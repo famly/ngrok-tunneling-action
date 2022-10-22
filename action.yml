@@ -10,6 +10,10 @@ inputs:
     description: 'Deployment timeout before closing it down'
     required: true
     default: '1h'
+  blocking:  
+    description: 'If the job should block of run ngrok in the background'
+    required: true
+    default: 'true'
   port:
     description: 'The port to forward HTTP traffic to'
     required: true
@@ -26,5 +30,6 @@ runs:
       shell: bash
     - run: ./ngrok config add-authtoken ${{ inputs.ngrok_authtoken }}
       shell: bash
-    - run: timeout ${{ inputs.timeout }} ./ngrok http ${{ inputs.port }} --log=stdout
+    - run: |
+        if [[ "${{ inputs.blocking }}" == "false" ]]; then ./ngrok http ${{ inputs.port }} & ; else timeout ${{ inputs.timeout }} ./ngrok http ${{ inputs.port }} --log=stdout; fi
       shell: bash
