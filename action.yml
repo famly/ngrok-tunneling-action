@@ -20,11 +20,11 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+    - run: wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
       shell: bash
     - run: unzip -qq ngrok-stable-linux-amd64.zip
       shell: bash
-    - run: ./ngrok authtoken ${{ inputs.ngrok_authtoken }}
+    - run: ./ngrok config add-authtoken ${{ inputs.ngrok_authtoken }}
       shell: bash
-    - run: timeout ${{ inputs.timeout }} ./ngrok tcp ${{ inputs.port }}
+    - run: timeout ${{ inputs.timeout }} ./ngrok http ${{ inputs.port }}
       shell: bash
