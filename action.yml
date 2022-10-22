@@ -7,11 +7,11 @@ branding:
 
 inputs:
   timeout:  
-    description: 'Challenge deployment timeout'
+    description: 'Deployment timeout before closing it down'
     required: true
     default: '1h'
   port:
-    description: 'The port to forward traffic to'
+    description: 'The port to forward HTTP traffic to'
     required: true
   ngrok_authtoken:
     description: 'Ngrok authorization token'
