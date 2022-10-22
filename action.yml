@@ -26,5 +26,5 @@ runs:
       shell: bash
     - run: ./ngrok config add-authtoken ${{ inputs.ngrok_authtoken }}
       shell: bash
-    - run: timeout ${{ inputs.timeout }} ./ngrok http ${{ inputs.port }}
+    - run: timeout ${{ inputs.timeout }} ./ngrok http ${{ inputs.port }} --log=stdout
       shell: bash
